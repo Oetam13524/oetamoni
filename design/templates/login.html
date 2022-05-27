@@ -55,7 +55,16 @@
 
 				</div>
 
-				
+				{% for message in messages %}
+					<p id="messages">{{message}}</p>
+				{% endfor %}			
+		
+				<div class="mt-4">
+					<div class="plogin">
+						Don't have an account? <a href="{% url 'register' %}" class="ml-2">Sign Up</a>
+					</div>
+			
+				</div>
 			</div>
 		</div>
 	</div>
