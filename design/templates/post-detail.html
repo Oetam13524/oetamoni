@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock title %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "design/post-detail.css" %}">
+{% endblock css_files %}
+
+{% block content %}
+{% if comment_form.errors %}
+    <div id="alert">
+        <h2>
+            Saving the comment failed!
+        </h2>
+        <p>
+            Please check your comment form bellow and fix your errors!
+        </p>
+        <a href="#comment-form">Fix!</a>
+    </div>
+{% endif %}
+
+<div id="container">
+    <img src="{{ post.bgimage.url }}" alt="Background Image">
+
+    <section id="movie-title">
+        <h2>{{ post.title }}</h2>
+
+        <div id="favourites">
+            <form action="{% url "favourites" %}" method="POST">
+                {% csrf_token %}
+            <input type="hidden" value="{{ post.id }}" name="post_id">
+            <button>
+                {% if added_to_favourites %}
+                    Remove from favourites
+                {% else %}
+                    Add to Favourites
+                {% endif %}
+            </button>
+            </form>
+        </div>
+
+        <article>
+            <img src="{{ post.imageName.url }}" alt="Error while loading image">
+            <div>
+                Uploaded on <time>{{ post.date|date:"d M Y" }}</time>
+            </div>
+        </article>
+
+        <section id="links">
+            <div id="imdb">
+                <button onclick="window.location.href = 'https://www.imdb.com/';">IMDB</button>
+            </div>
+            <div id="tomato">
+                <button onclick="window.location.href = 'https://www.rottentomatoes.com/';">RottenTomatoes</button>
+            </div>
+            <div id="meta">
+                <button onclick="window.location.href = 'https://www.metacritic.com/';">Metacritic</button>
+            </div>
+        </section>
+
+        <section id="description">
+            <p>{{ post.description|linebreaks }}</p>
+        </section>
+
+        <section id="comment-form">
+            <h2>Comment down below</h2>
+            <form action="{% url "post-detail-page" post.slug %}" method="POST">
+                {% csrf_token %}
+
+                {% for form_field in comment_form %}
+                    <div class="form-control {% if form_field.errors %}invalid{% endif %}">
+                        {{ form_field.label_tag }}
+                        {{ form_field }}
+                        {{ form_field.errors }}
+                    </div>
+                {% endfor %}
+
+                <button>Submit</button>
+            </form>
+        </section>
+
+        <section id="comments">
+            <ul>
+                {% for comment in comments %}
+                    <li>
+                        <h2>
+                            {{ comment.user_name }}
+                        </h2>
+    
+                        <p>
+                            {{ comment.text|linebreaks }}
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </section>
+</div>
+{% endblock content %}
