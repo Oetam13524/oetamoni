@@ -108,3 +108,36 @@ def loginPage(request):
 def logoutUser(request):
 	logout(request)
 	return redirect('login')
+
+
+class FavouritesView(View):
+    def get(self, request):
+        favourites = request.session.get("favourites")
+        context = {}
+        if favourites is None or len(favourites) == 0:
+            context["posts"] = []
+            context["has_posts"] = False
+        
+        else:
+            posts = Post.objects.filter(id__in=favourites)
+            context["posts"] = posts
+            context["has_posts"] = True
+
+        return render(request, "design/favourites.html", context)
+
+
+
+    def post(self, request):
+        favourites = request.session.get("favourites")
+        if favourites is None:
+            favourites = []
+            
+        post_id = int(request.POST["post_id"])
+
+        if post_id not in favourites:
+            favourites.append(post_id)
+        else: 
+            favourites.remove(post_id)
+        request.session["favourites"] = favourites
+
+        return HttpResponseRedirect("/")
