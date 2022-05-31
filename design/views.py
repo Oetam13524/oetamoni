@@ -19,3 +19,48 @@ class StartingPageView(ListView):
     template_name = "design/index.html"
     model = Post
     context_object_name = "posts"
+
+
+class PostDetailView(View):
+    def is_favourite(self, request, post_id):
+        favourite = request.session.get("favourite")
+        if favourite is not None:
+            is_added_to_favourites = post_id in favourite
+        else:
+            is_added_to_favourites = False
+
+        return is_added_to_favourites
+
+
+    def get(self, request, slug):
+        post = Post.objects.get(slug=slug)
+        context = {
+            "post": post,
+            "comment_form": CommentForm(),
+            "comments": post.comments.all().order_by("-id"),
+            "favourites": self.is_favourite(request, post.id),
+            "added_to_favourites": self.is_favourite(request, post.id)
+        }
+
+        return render(request, "design/post-detail.html", context)
+        
+
+
+    def post(self, request, slug):
+        comment_form = CommentForm(request.POST)
+        post = Post.objects.get(slug=slug)
+        if comment_form.is_valid():
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return HttpResponseRedirect(reverse("post-detail-page", args=[slug]))
+
+        context = {
+            "post": post,
+            "comment_form": comment_form,
+            "comments": post.comments.all().order_by("-id"),
+            "favourites": self.is_favourite(request, post.id),
+            "added_to_favourites": self.is_favourite(request, post.id)
+        }
+
+        return render(request, "design/post-detail.html", context)
