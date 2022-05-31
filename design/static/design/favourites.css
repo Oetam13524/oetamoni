@@ -1,0 +1,80 @@
+body {
+    background-image: url("images/bcgimage.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+  
+  #main-navigation {
+      width: 80%;
+      height: 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.603);
+    }
+  
+    #main-navigation a {
+      text-decoration: none;
+      color: rgb(255, 0, 0);
+      font-weight: bold;
+      margin-left: 2rem;
+    }
+  
+    #main-navigation-nav {
+      font-size: 18px;
+    }
+    
+    #main-navigation a:hover,
+    #main-navigation a:active {
+      color: rgb(0, 26, 255);
+    }
+    
+    #main-navigation h1 a:hover,
+    #main-navigation h1 a:active {
+      color: rgb(0, 26, 255);
+    }
+
+  #favourites {
+      margin: 18rem auto 3rem auto;
+      padding: 3rem;
+      border-radius: 12px;
+      background-color: rgba(0, 0, 0, 0.603);
+      width: 90%;
+      max-width: 30rem;
+  }
+
+  #favourites ul {
+      list-style: none;
+      margin: 2rem;
+      padding: 0;
+  }
+
+  #favourites li {
+      margin: 1rem 0;
+      padding: 1rem;
+  }
+
+  #favourites a {
+      border: 1px solid rgb(255, 0, 0);
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      text-decoration: none;
+      color: rgb(255, 255, 255);
+      font-weight: bold;
+  }
+  
+  #favourites a:hover, a:active {
+      background-color: rgb(0, 26, 255);
+      border: 1px solid rgb(0, 26, 255);
+  }
+
+  #favourites p {
+      color: white;
+  }

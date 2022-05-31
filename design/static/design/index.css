@@ -1,0 +1,128 @@
+body {
+  background-image: url("images/bcgimage.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+#main-navigation {
+    width: 80%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.603);
+  }
+
+  .boja {
+    color: white;
+    margin-left: 2rem;
+  }
+
+  #main-navigation a {
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+    font-weight: bold;
+    margin-left: 2rem;
+  }
+
+  #main-navigation-nav {
+    font-size: 18px;
+  }
+  
+  #main-navigation a:hover,
+  #main-navigation a:active {
+    color: rgb(0, 26, 255);
+  }
+  
+  #main-navigation h1 a:hover,
+  #main-navigation h1 a:active {
+    color: rgb(0, 26, 255);
+  }
+
+  #welcome {
+    width: 70%;
+    padding: 12rem 11%;
+  }
+
+  #welcome p {
+    font-size: 60px;
+    line-height: 6rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+  }
+
+  .post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .post a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    transition: all 0.2s ease;
+    padding: 1rem;
+  }
+  
+  .post a:hover,
+  .post a:active {
+    transform: scale(1.1);
+    color: rgb(255, 255, 255);
+    opacity: 70%;
+  }
+  
+  .post img {
+    width: 17rem;
+    height: 25rem;
+    object-fit: cover;
+    border-radius: 6%;
+  }
+  
+  .post h3 {
+    margin: 0.25rem 0;
+  }
+  
+  .post time {
+    color: #666666;
+    margin: 0.25rem;
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  
+  .post:hover time,
+  .post:active time {
+    color: white;
+  }
+
+  #latest-movie {
+    background-color: rgba(0, 0, 0, 0.932);
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    margin: 8rem auto 3rem auto;
+    box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  #latest-movie h2 {
+    text-align: center;
+  }
+  
+  #latest-movie ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  #latest-movie li {
+    flex: 1;
+  }
